@@ -1,0 +1,213 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Mobile Web App</title>
+    
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+<script src="jQuery/jquery-1.11.2.min.js"></script>
+<script src="jQuery/jquery.mobile-1.4.5.min.js"></script>
+<script>
+// page2 code --------------------------------------------------------
+
+// global variable
+let fruits = ["Apple","Pear", "Orange", "Banana"];
+
+function doSort()
+{
+	// alphabetically sorts the contents of the array
+	let str = "Length of the array is: " + fruits.length;
+	str += "<br />Sorted array: " + fruits.sort();
+	document.getElementById("arrAns").innerHTML = str;
+}
+
+function doReverse()
+{
+	// reverse the contents of an array
+	let str = "Length of the array is: " + fruits.length;
+	str += "<br />Reversed only: " + fruits.reverse();
+	// sort first and reverse - chaining
+	str += "<br />Sorted and then reversed: " + fruits.sort().reverse();
+	document.getElementById("arrAns").innerHTML = str;
+}
+
+function doPush()
+{
+	// adds an element to the END of the array
+	var newEle = document.getElementById("txtArr").value;
+	fruits.push(newEle);
+	let str = "Length of the array is: " + fruits.length;
+	str +="<br />Pushed array: " + fruits;
+	document.getElementById("arrAns").innerHTML = str;
+}
+
+function doPop()
+{
+	// removes an element from the END of the array
+	let str = "Length of the array is: " + fruits.length;
+	
+	if( fruits.length == 0)
+		str = "<em>There is nothing left to pop!</em>";
+	else
+	{
+		let popped = fruits.pop();
+		str += "<br />Popped element: " + popped;
+		str += "<br />Popped array: " + fruits;
+	}
+	
+	document.getElementById("arrAns").innerHTML = str;
+}
+
+function doUnshift()
+{
+	// adds an element to the START of the array
+	var newEle = document.getElementById("txtArr").value;
+	fruits.unshift(newEle);
+	let str = "Length of the array is: " + fruits.length;
+	str += "<br />Unshifted array: " + fruits;
+	document.getElementById("arrAns").innerHTML = str;
+}
+
+function doShift()
+{
+	let str = "";
+	// removes an element from the START of the array
+	if( fruits.length == 0 )
+		str += "<em>There is nothing left to shift!</em>";
+	else
+	{
+		
+		str += "Length of the array is: " + fruits.length;
+		str += "<br />Shifted element: " + fruits.shift();
+		str += "<br />Shifted array: " + fruits;
+	}
+	document.getElementById("arrAns").innerHTML = str;
+}
+
+function doSlice()
+{
+	// create a new array by "cutting out elements" from another array
+	//let newArr = fruits.slice(1);  // no 2nd arg - goes till the end of array
+	let newArr = fruits.slice(1,3);  // up to, but NOT including position 3
+	let str = "New array: " + newArr;
+	str += "<br />Old array: " + fruits;
+	document.getElementById("arrAns").innerHTML = str;
+}
+
+function doSplice()
+{
+	// inserts an element at a soecific position
+	let newEle = document.getElementById("txtArr").value;
+	
+	// 1st param - where new element(s) is to be inserted
+	// 2nd param - how many elements do you want to remove
+	// 3rd param - element(s) you want to insert
+	
+	//fruits.splice(2, 0, newEle, "Tomatoes");
+	fruits.splice(2, 1, newEle, "Tomatoes");
+	let str = "Length of the array is: " + fruits.length;
+	str += "<br >New array: " + fruits;
+	document.getElementById("arrAns").innerHTML = str;
+}
+
+function doSplit()
+{
+	let myStr = "Bill and Ben, Flower Pot Men";
+	let newArr = myStr.split(", ");
+	let str = "Length of the array is: " + newArr.length;
+	str += "<br />Array is: " + newArr;
+	document.getElementById("arrAns").innerHTML = str;
+}
+
+function doDisplay()
+{
+	let str = "Length of the array is: " + fruits.length + "<br /><br />";
+	
+	for( let i = 0 ; i < fruits.length ; i++ )
+		str += fruits[i] + "<br />";
+		
+	document.getElementById("arrAns").innerHTML = str;
+}
+
+</script>
+</head>
+ 
+<body> 
+
+<div data-role="page" id="page" data-theme="a">
+    <div data-role="header">
+        <h1>Array Advanced</h1>
+    </div>
+    <!--<div data-role="content">-->
+    <div data-role="main" class="ui-content">	
+        <ul data-role="listview">
+            <li><a href="#page2">Array Methods</a></li>
+            <li><a href="#page3">Page 3</a></li>
+            <li><a href="#page4">Page 4</a></li>
+        </ul>		
+   </div>
+   <div data-role="footer">
+        <h4>Agnes Hennessy</h4>
+   </div>
+</div>
+    
+<div data-role="page" id="page2">
+    <div data-role="header" data-add-back-btn="true">
+        <h1>Array Methods</h1>
+    </div>
+    <!--<div data-role="content">-->
+    <div data-role="main" class="ui-content">	
+         <p>let fruits = ["Apple","Pear", "Orange", "Banana"]</p>	
+		 
+		 <div data-role="fieldcontain">
+			<label for="txtArr">Enter new array element:</label>
+			<input type="text" name="txtArr" id="txtArr" />
+		</div>
+
+		<button data-inline="true" onClick="doSort();" >Sort Array</button>
+		<button data-inline="true" onClick="doReverse();" >Reverse Array</button>
+		<button data-inline="true" onClick="doPush();" >Push Array</button>
+		<button data-inline="true" onClick="doPop();" >Pop Array</button>
+		<button data-inline="true" onClick="doUnshift();" >Unshift Array</button>
+		<button data-inline="true" onClick="doShift();" >Shift Array</button>
+		<button data-inline="true" onClick="doSlice();" >Slice Array</button>
+		<button data-inline="true" onClick="doSplice();" >Splice Array</button>
+		<button data-inline="true" onClick="doSplit();" >Split Array</button>
+		<button data-inline="true" onClick="doDisplay();" >Display Array</button>
+		
+		<p id="arrAns"></p>
+		
+    </div>
+    <div data-role="footer"> 
+        <h4>Agnes Hennessy</h4>    
+    </div>
+</div>
+    
+<div data-role="page" id="page3">
+    <div data-role="header" data-add-back-btn="true">
+         <h1>Page 3</h1>
+    </div>
+    <!--<div data-role="content">-->
+    <div data-role="main" class="ui-content">	
+         Content		
+    </div>
+    <div data-role="footer">
+        <h4>Agnes Hennessy</h4>
+  	</div>
+</div>
+    
+<div data-role="page" id="page4">
+    <div data-role="header" data-add-back-btn="true">
+          <h1>Page 4</h1>
+    </div>
+    <!--<div data-role="content">-->
+    <div data-role="main" class="ui-content">	
+         Content		
+    </div>
+    <div data-role="footer">
+        <h4>Agnes Hennessy</h4>
+  	</div>
+</div>
+
+</body>
+</html>
